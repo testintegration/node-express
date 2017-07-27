@@ -59,6 +59,7 @@ app.post('/addUser', function (req, res) {
 
 //Accessing the HTML document using http://127.0.0.1:8081/index.htm will generate the following form
 app.get('/index.htm', function (req, res) {
+   console.log("Got a GET request for the index");
    res.sendFile( __dirname + "/" + "index.htm" );
 })
 
@@ -129,6 +130,7 @@ app.delete('/del_user', function (req, res) {
 */
 var id = 2;
 
+// only works from chrome extension postman
 app.delete('/deleteUser', function (req, res) {
    console.log("Got a DELETE request for /del_user");
    // First read existing users.
@@ -161,7 +163,8 @@ app.get('/ab*cd', function(req, res) {
    res.send('Page Pattern Match');
 })
 
-// put this last: catch 404 and forward to error handler
+
+// catch 404 and forward to error handler
 app.use(function (req, res, next) {
     return res.render('index');
 });
