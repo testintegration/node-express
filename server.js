@@ -25,6 +25,38 @@ app.use(cookieParser());
 //does not work: app.use(multer({ dest: '/tmp/'}));
 app.use(multer({dest:__dirname+'/tmp/'}).any());
 
+var user = {
+   "user4" : {
+      "name" : "mohit",
+      "password" : "password4",
+      "profession" : "teacher",
+      "id": 4
+   }
+}
+// with /u, it will run the / match
+app.get('/id/:id', function (req, res) {
+   console.log("Got a GET request for the id");
+   // First read existing users.
+   fs.readFile( __dirname + "/" + "users.json", 'utf8', function (err, data) {
+      var users = JSON.parse( data );
+      var user = users["user" + req.params.id]
+      console.log( user );
+      res.end( JSON.stringify(user));
+   });
+})
+
+
+app.post('/addUser', function (req, res) {
+   console.log("Got a GET request for the addUser");
+   // First read existing users.
+   fs.readFile( __dirname + "/" + "users.json", 'utf8', function (err, data) {
+       data = JSON.parse( data );
+       data["user4"] = user["user4"];
+       console.log( data );
+       res.end( JSON.stringify(data));
+   });
+})
+
 //Accessing the HTML document using http://127.0.0.1:8081/index.htm will generate the following form
 app.get('/index.htm', function (req, res) {
    res.sendFile( __dirname + "/" + "index.htm" );
@@ -89,15 +121,38 @@ app.post('/', function (req, res) {
 })
 
 // This responds a DELETE request for the /del_user page.
+/*
 app.delete('/del_user', function (req, res) {
    console.log("Got a DELETE request for /del_user");
    res.send('Hello DELETE');
 })
+*/
+var id = 2;
+
+app.delete('/deleteUser', function (req, res) {
+   console.log("Got a DELETE request for /del_user");
+   // First read existing users.
+   fs.readFile( __dirname + "/" + "users.json", 'utf8', function (err, data) {
+       data = JSON.parse( data );
+       delete data["user" + id];
+
+       console.log( data );
+       res.end( JSON.stringify(data));
+   });
+})
+
 
 // This responds a GET request for the /list_user page.
 app.get('/list_user', function (req, res) {
    console.log("Got a GET request for /list_user");
-   res.send('Page Listing');
+//   res.send('Page Listing');
+// this would prompt to open or save file
+  //res.sendFile( __dirname + "/" + "users.json" );
+  fs.readFile( __dirname + "/" + "users.json", 'utf8', function (err, data) {
+      console.log( data );
+      res.end( data );
+  });
+
 })
 
 // This responds a GET request for abcd, abxcd, ab123cd, and so on
@@ -105,6 +160,12 @@ app.get('/ab*cd', function(req, res) {
    console.log("Got a GET request for /ab*cd");
    res.send('Page Pattern Match');
 })
+
+// put this last: catch 404 and forward to error handler
+app.use(function (req, res, next) {
+    return res.render('index');
+});
+
 
 var server = app.listen(8081, function () {
 
