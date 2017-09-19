@@ -23,19 +23,19 @@ Verify you are on your feature branch:
   Open your project root folder in your command line and type "git branch"  
     
     
-4. In Eclipse 
- Right click on projects 
- Force.com: replace with your personal dev creds 
+4 - In Eclipse 
+Right click on projects 
+Force.com: replace with your personal dev creds 
  
  
- 5. Retrieve your changes from your personal dev  
- e.g. skuid static resource right click on page: refresh from server 
+5 - Retrieve your changes from your personal dev  
+e.g. skuid static resource right click on page: refresh from server 
  
  
- 6. In Github desktop
- You are on your personal branch click on changes review changes, enter in Summary and Description, 
- click on check to commit click on publish to your right, which add your new feature branch to remote with all commit 
+6 - In Github desktop
+You are on your personal branch click on changes review changes, enter in Summary and Description, 
+click on check to commit click on publish to your right, which add your new feature branch to remote with all commit 
  
  
- 7.  https://source.heidrick.com/Heidrick/CRM-APP-Latitude 
- Now you have everything you need to pull request from feature branch to your personal branch, and from your personal branch to devpro01.
+7 - https://source.heidrick.com/Heidrick/CRM-APP-Latitude 
+Now you have everything you need to pull request from feature branch to your personal branch, and from your personal branch to devpro01.
